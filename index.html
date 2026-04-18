@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A Drone in the Snow | HTML/CSS Writeup</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <aside class="sidebar">
+        <p class="eyebrow">Drone Forensics</p>
+        <h1>AoTR 4: A Drone in the Snow</h1>
+        <p class="lede">
+          Versi statis berbasis HTML dan CSS yang mengikuti pola writeup
+          0xhouda: singkat, visual, dan enak di-scan langkah demi langkah.
+        </p>
+
+        <nav class="toc" aria-label="Daftar isi">
+          <a href="#scenario">Scenario</a>
+          <a href="#tools">Tools</a>
+          <a href="#lab-files">Lab Files</a>
+          <a href="#task-1">Task 1</a>
+          <a href="#task-2">Task 2</a>
+          <a href="#task-3">Task 3</a>
+          <a href="#task-4">Task 4</a>
+          <a href="#task-5">Task 5</a>
+          <a href="#task-6">Task 6</a>
+          <a href="#task-7">Task 7</a>
+          <a href="#task-8">Task 8</a>
+          <a href="#task-9">Task 9</a>
+          <a href="#task-10">Task 10</a>
+          <a href="#task-11">Task 11</a>
+          <a href="#task-12">Task 12</a>
+          <a href="#task-13">Task 13</a>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <section class="hero-card">
+          <div class="hero-copy">
+            <p class="hero-tag">Case Reconstruction</p>
+            <h2>Route, telemetry, dan crash point dibaca seperti investigasi.</h2>
+            <p>
+              Halaman ini mempertahankan alur post referensi:
+              <span>scenario</span>, <span>alat</span>, <span>file lab</span>,
+              lalu task demi task dengan screenshot sebagai bukti visual.
+            </p>
+          </div>
+          <div class="hero-image">
+            <img src="1.png" alt="Rute drone di atas peta Budapest" />
+          </div>
+        </section>
+
+        <section class="intro-card" id="scenario">
+          <p class="section-kicker">Scenario</p>
+          <h2>Rekonstruksi misi drone dari flight plan dan log penerbangan.</h2>
+          <p>
+            Sebuah drone hitam ditemukan terkubur salju setelah data dari disk
+            yang dipulihkan mengarah ke operasi yang terencana. Tugasnya adalah
+            memeriksa file <code>.plan</code> dan <code>log.bin</code> untuk
+            memahami rute, perilaku penting selama misi, dan apa yang terjadi
+            sebelum drone menabrak tanah.
+          </p>
+        </section>
+
+        <section class="meta-grid">
+          <article class="meta-card" id="tools">
+            <p class="section-kicker">Tools</p>
+            <ul>
+              <li><code>qGroundControl</code> untuk membaca mission plan.</li>
+              <li><code>mavlogdump.py</code> untuk mengurai isi log penerbangan.</li>
+            </ul>
+          </article>
+
+          <article class="meta-card" id="lab-files">
+            <p class="section-kicker">Lab Files</p>
+            <ul>
+              <li>
+                <code>AOTR_Winter_Blackout.plan</code> berisi setting dan jalur
+                misi.
+              </li>
+              <li>
+                <code>log.bin</code> berisi event nyata yang terjadi saat drone
+                terbang.
+              </li>
+            </ul>
+          </article>
+        </section>
+
+        <section class="task-card" id="task-1">
+          <p class="task-label">Task 1</p>
+          <h3>
+            Berapa total mission item yang didefinisikan di flight plan,
+            termasuk Home, Takeoff, dan Land?
+          </h3>
+          <p class="step">
+            Buka file <code>.plan</code> di <code>qGroundControl</code>, lalu
+            hitung seluruh item misi yang terlihat di rute.
+          </p>
+          <div class="gallery gallery-three">
+            <figure>
+              <img src="1.png" alt="Tampilan keseluruhan route drone" />
+            </figure>
+            <figure>
+              <img src="2.png" alt="Drone mengitari Citadella" />
+            </figure>
+            <figure>
+              <img src="3.png" alt="Detail waypoint pada qGroundControl" />
+            </figure>
+          </div>
+          <div class="answer-box">
+            <span>Answer</span>
+            <strong>49</strong>
+          </div>
+        </section>
+
+        <section class="task-card" id="task-2">
+          <p class="task-label">Task 2</p>
+          <h3>Berapa jumlah spline waypoint di dalam misi?</h3>
+          <p class="step">
+            Dari daftar waypoint di panel kanan, perhatikan bahwa mayoritas item
+            bertipe <code>Spline waypoint</code>. Hitung semua waypoint jenis
+            tersebut.
+          </p>
+          <div class="single-figure">
+            <figure>
+              <img src="3.png" alt="Daftar spline waypoint" />
+            </figure>
+          </div>
+          <div class="answer-box">
+            <span>Answer</span>
+            <strong>46</strong>
+          </div>
+        </section>
+
+        <section class="task-card" id="task-3">
+          <p class="task-label">Task 3</p>
+          <h3>Landmark apa yang dikelilingi drone selama rute yang direncanakan?</h3>
+          <p class="step">
+            Zoom area berbentuk benteng pada peta. Jalur drone membentuk loop di
+            sekitar lokasi tersebut.
+          </p>
+          <div class="single-figure">
+            <figure>
+              <img src="2.png" alt="Rute yang mengitari Citadella" />
+            </figure>
+          </div>
+          <div class="answer-box">
+            <span>Answer</span>
+            <strong>Citadella</strong>
+          </div>
+        </section>
+
+        <section class="task-card" id="task-4">
+          <p class="task-label">Task 4</p>
+          <h3>Pada mission item berapa drone memiliki hold atau loiter terencana?</h3>
+          <p class="step">
+            Cari waypoint yang menampilkan durasi <code>Hold 30 secs</code>.
+            Marker hijau pada peta menunjukkan titik hold tersebut.
+          </p>
+          <div class="single-figure">
+            <figure>
+              <img src="3.png" alt="Waypoint hold dengan durasi 30 detik" />
+            </figure>
+          </div>
+          <div class="answer-box">
+            <span>Answer</span>
+            <strong>18</strong>
+          </div>
+        </section>
+
+        <section class="task-card" id="task-5">
+          <p class="task-label">Task 5</p>
+          <h3>Berapa lama planned hold time pada mission item tersebut?</h3>
+          <p class="step">
+            Nilai durasi terlihat langsung pada panel detail waypoint di
+            <code>qGroundControl</code>.
+          </p>
+          <div class="single-figure">
+            <figure>
+              <img src="3.png" alt="Durasi hold 30 detik pada waypoint" />
+            </figure>
+          </div>
+          <div class="answer-box">
+            <span>Answer</span>
+            <strong>30 detik</strong>
+          </div>
+        </section>
+
+        <section class="task-card" id="task-6">
+          <p class="task-label">Task 6</p>
+          <h3>
+            Bridge apa yang dilewati drone ketika menyeberangi Danube menuju sisi
+            kota lain?
+          </h3>
+          <p class="step">
+            Amati nama jembatan yang berada tepat di jalur lintasan saat drone
+            melintasi sungai.
+          </p>
+          <div class="single-figure">
+            <figure>
+              <img src="4.png" alt="Jalur drone melewati Elisabeth Bridge" />
+            </figure>
+          </div>
+          <div class="answer-box">
+            <span>Answer</span>
+            <strong>Elisabeth Bridge</strong>
+          </div>
+        </section>
+
+        <section class="task-card" id="task-7">
+          <p class="task-label">Task 7</p>
+          <h3>Berapa total durasi terbang dari takeoff sampai crash?</h3>
+          <p class="step">
+            Pindah ke <code>log.bin</code>, lalu cari timestamp awal takeoff dan
+            event drone menyentuh tanah. Selisih keduanya dibagi satu juta untuk
+            menghasilkan waktu dalam detik.
+          </p>
+          <div class="gallery gallery-two">
+            <figure>
+              <img src="5.png" alt="Daftar tipe log pada mavlogdump" />
+            </figure>
+            <figure>
+              <img src="6.png" alt="Event log takeoff sampai hit ground" />
+            </figure>
+          </div>
+          <pre class="command-block"><code>python mavlogdump.py --type MSG log.bin
+start time  = 48893768
+hit time    = 687813098
+flight time = (hit time - start time) / 1000000</code></pre>
+          <div class="answer-box">
+            <span>Answer</span>
+            <strong>00:10:38.919</strong>
+          </div>
+        </section>
+
+        <section class="task-card" id="task-8">
+          <p class="task-label">Task 8</p>
+          <h3>Apa exact log timestamp untuk event crash (<code>TimeUS</code>)?</h3>
+          <p class="step">
+            Baris yang paling penting ada pada event
+            <code>SIM Hit ground</code>. Ambil nilai <code>TimeUS</code> dari
+            baris tersebut.
+          </p>
+          <div class="single-figure">
+            <figure>
+              <img src="6.png" alt="Log berisi event SIM Hit ground" />
+            </figure>
+          </div>
+          <div class="answer-box">
+            <span>Answer</span>
+            <strong>687813098</strong>
+          </div>
+        </section>
+
+        <section class="task-card" id="task-9">
+          <p class="task-label">Task 9</p>
+          <h3>Koordinat crash drone ada di mana?</h3>
+          <p class="step">
+            Ambil data GPS yang paling dekat sebelum timestamp crash, lalu baca
+            nilai <code>Lat</code> dan <code>Lng</code>.
+          </p>
+          <pre class="command-block"><code>python mavlogdump.py log.bin | grep -B30 687813098 | grep Lat</code></pre>
+          <div class="answer-box">
+            <span>Answer</span>
+            <strong>47.4903055, 19.0460476</strong>
+          </div>
+        </section>
+
+        <section class="task-card" id="task-10">
+          <p class="task-label">Task 10</p>
+          <h3>Berapa ground impact speed saat crash?</h3>
+          <p class="step">
+            Nilai kecepatan benturan juga tertulis di baris
+            <code>SIM Hit ground</code> pada log event.
+          </p>
+          <div class="single-figure">
+            <figure>
+              <img src="6.png" alt="Kecepatan impact pada event crash" />
+            </figure>
+          </div>
+          <div class="answer-box">
+            <span>Answer</span>
+            <strong>12.93254 m/s</strong>
+          </div>
+        </section>
+
+        <section class="task-card" id="task-11">
+          <p class="task-label">Task 11</p>
+          <h3>Berapa GPS altitude maksimum selama penerbangan?</h3>
+          <p class="step">
+            Filter semua entri GPS, ambil field altitude, urutkan, lalu lihat
+            nilai paling tinggi.
+          </p>
+          <div class="single-figure">
+            <figure>
+              <img src="7.png" alt="Command untuk mencari altitude maksimum" />
+            </figure>
+          </div>
+          <pre class="command-block"><code>python mavlogdump.py --type GPS log.bin | grep Alt | sort -n | tail -1</code></pre>
+          <div class="answer-box">
+            <span>Answer</span>
+            <strong>377.07 meter</strong>
+          </div>
+        </section>
+
+        <section class="task-card" id="task-12">
+          <p class="task-label">Task 12</p>
+          <h3>Berapa GPS ground speed tercepat yang terekam?</h3>
+          <p class="step">
+            Dari dump GPS, ambil field speed, urutkan secara numerik, lalu baca
+            angka paling besar.
+          </p>
+          <div class="single-figure">
+            <figure>
+              <img src="8.png" alt="Command untuk mencari ground speed maksimum" />
+            </figure>
+          </div>
+          <pre class="command-block"><code>python mavlogdump.py --type GPS log.bin | cut -d':' -f15 | sort -n | tail -1</code></pre>
+          <div class="answer-box">
+            <span>Answer</span>
+            <strong>10.24 m/s</strong>
+          </div>
+        </section>
+
+        <section class="task-card" id="task-13">
+          <p class="task-label">Task 13</p>
+          <h3>Koordinat takeoff drone dari mana?</h3>
+          <p class="step">
+            Lihat entri GPS paling awal untuk menentukan titik lepas landas yang
+            kemungkinan besar menjadi lokasi operator.
+          </p>
+          <div class="single-figure">
+            <figure>
+              <img src="9.png" alt="Command untuk mengambil koordinat awal" />
+            </figure>
+          </div>
+          <pre class="command-block"><code>python mavlogdump.py --type GPS log.bin | head -1</code></pre>
+          <div class="answer-box">
+            <span>Answer</span>
+            <strong>47.4819399, 19.01916</strong>
+          </div>
+        </section>
+
+        <section class="closing-card">
+          <p class="section-kicker">Wrap Up</p>
+          <h2>Struktur step-by-step tetap sama, tapi tampilannya lebih bersih.</h2>
+          <p>
+            Semua bagian dibuat hanya dengan HTML dan CSS: tidak ada JavaScript,
+            tidak ada framework, dan semua gambar dipakai langsung dari folder
+            kerja yang sama.
+          </p>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
