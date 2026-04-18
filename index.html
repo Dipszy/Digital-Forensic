@@ -96,8 +96,7 @@
         <section class="task-card" id="task-1">
           <p class="task-label">Task 1</p>
           <h3>
-            Berapa total mission item yang didefinisikan di flight plan,
-            termasuk Home, Takeoff, dan Land?
+            How many total mission items are defined in the flight plan, including Home, Takeoff, and Land commands?
           </h3>
           <p class="step">
             Buka file <code>.plan</code> di <code>qGroundControl</code>, lalu
@@ -116,16 +115,13 @@
 
         <section class="task-card" id="task-2">
           <p class="task-label">Task 2</p>
-          <h3>Berapa jumlah spline waypoint di dalam misi?</h3>
+          <h3>How many spline waypoints are in the mission?</h3>
           <p class="step">
             Dari daftar waypoint di panel kanan, perhatikan bahwa mayoritas item
             bertipe <code>Spline waypoint</code>. Hitung semua waypoint jenis
             tersebut.
           </p>
           <div class="single-figure">
-            <figure>
-              <img src="3.png" alt="Daftar spline waypoint" />
-            </figure>
           </div>
           <div class="answer-box">
             <span>Answer</span>
@@ -135,7 +131,7 @@
 
         <section class="task-card" id="task-3">
           <p class="task-label">Task 3</p>
-          <h3>Landmark apa yang dikelilingi drone selama rute yang direncanakan?</h3>
+          <h3>Which landmark/building does the drone fly around during the planned route?</h3>
           <p class="step">
             Zoom area berbentuk benteng pada peta. Jalur drone membentuk loop di
             sekitar lokasi tersebut.
@@ -153,7 +149,7 @@
 
         <section class="task-card" id="task-4">
           <p class="task-label">Task 4</p>
-          <h3>Pada mission item berapa drone memiliki hold atau loiter terencana?</h3>
+          <h3>At which mission item did the drone have a planned hold/loiter?</h3>
           <p class="step">
             Cari waypoint yang menampilkan durasi <code>Hold 30 secs</code>.
             Marker hijau pada peta menunjukkan titik hold tersebut.
@@ -171,27 +167,21 @@
 
         <section class="task-card" id="task-5">
           <p class="task-label">Task 5</p>
-          <h3>Berapa lama planned hold time pada mission item tersebut?</h3>
+          <h3>How long was the planned hold time at that mission item (seconds)?</h3>
           <p class="step">
             Nilai durasi terlihat langsung pada panel detail waypoint di
             <code>qGroundControl</code>.
           </p>
-          <div class="single-figure">
-            <figure>
-              <img src="3.png" alt="Durasi hold 30 detik pada waypoint" />
-            </figure>
-          </div>
           <div class="answer-box">
             <span>Answer</span>
-            <strong>30 detik</strong>
+            <strong>30</strong>
           </div>
         </section>
 
         <section class="task-card" id="task-6">
           <p class="task-label">Task 6</p>
           <h3>
-            Bridge apa yang dilewati drone ketika menyeberangi Danube menuju sisi
-            kota lain?
+            Which bridge is the drone planned to pass by while crossing the Danube in order to reach the other part of the city? (English name)
           </h3>
           <p class="step">
             Amati nama jembatan yang berada tepat di jalur lintasan saat drone
@@ -210,7 +200,7 @@
 
         <section class="task-card" id="task-7">
           <p class="task-label">Task 7</p>
-          <h3>Berapa total durasi terbang dari takeoff sampai crash?</h3>
+          <h3>What is the total flight time from takeoff to crash?</h3>
           <p class="step">
             Pindah ke <code>log.bin</code>, lalu cari timestamp awal takeoff dan
             event drone menyentuh tanah. Selisih keduanya dibagi satu juta untuk
@@ -236,17 +226,12 @@ flight time = (hit time - start time) / 1000000</code></pre>
 
         <section class="task-card" id="task-8">
           <p class="task-label">Task 8</p>
-          <h3>Apa exact log timestamp untuk event crash (<code>TimeUS</code>)?</h3>
+          <h3>What is the exact log timestamp for the crash event (<code>TimeUS</code>)?</h3>
           <p class="step">
             Baris yang paling penting ada pada event
             <code>SIM Hit ground</code>. Ambil nilai <code>TimeUS</code> dari
             baris tersebut.
           </p>
-          <div class="single-figure">
-            <figure>
-              <img src="6.png" alt="Log berisi event SIM Hit ground" />
-            </figure>
-          </div>
           <div class="answer-box">
             <span>Answer</span>
             <strong>687813098</strong>
@@ -255,7 +240,7 @@ flight time = (hit time - start time) / 1000000</code></pre>
 
         <section class="task-card" id="task-9">
           <p class="task-label">Task 9</p>
-          <h3>Koordinat crash drone ada di mana?</h3>
+          <h3>What are the coordinates where the drone crashed (<code>lat, lon</code>)?</h3>
           <p class="step">
             Ambil data GPS yang paling dekat sebelum timestamp crash, lalu baca
             nilai <code>Lat</code> dan <code>Lng</code>.
@@ -269,7 +254,7 @@ flight time = (hit time - start time) / 1000000</code></pre>
 
         <section class="task-card" id="task-10">
           <p class="task-label">Task 10</p>
-          <h3>Berapa ground impact speed saat crash?</h3>
+          <h3>What was the ground impact speed reported at the moment of crash (m/s)?</h3>
           <p class="step">
             Nilai kecepatan benturan juga tertulis di baris
             <code>SIM Hit ground</code> pada log event.
@@ -287,7 +272,7 @@ flight time = (hit time - start time) / 1000000</code></pre>
 
         <section class="task-card" id="task-11">
           <p class="task-label">Task 11</p>
-          <h3>Berapa GPS altitude maksimum selama penerbangan?</h3>
+          <h3>What was the maximum GPS altitude reached during the flight (meters)?</h3>
           <p class="step">
             Filter semua entri GPS, ambil field altitude, urutkan, lalu lihat
             nilai paling tinggi.
@@ -306,7 +291,7 @@ flight time = (hit time - start time) / 1000000</code></pre>
 
         <section class="task-card" id="task-12">
           <p class="task-label">Task 12</p>
-          <h3>Berapa GPS ground speed tercepat yang terekam?</h3>
+          <h3>What was the fastest GPS ground speed recorded (m/s)?</h3>
           <p class="step">
             Dari dump GPS, ambil field speed, urutkan secara numerik, lalu baca
             angka paling besar.
@@ -325,7 +310,7 @@ flight time = (hit time - start time) / 1000000</code></pre>
 
         <section class="task-card" id="task-13">
           <p class="task-label">Task 13</p>
-          <h3>Koordinat takeoff drone dari mana?</h3>
+          <h3>What are the coordinates where the drone took off from (lat, lon), and therefore a good location for the police raid to catch the gang member?</h3>
           <p class="step">
             Lihat entri GPS paling awal untuk menentukan titik lepas landas yang
             kemungkinan besar menjadi lokasi operator.
